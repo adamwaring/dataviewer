@@ -1,19 +1,30 @@
 Package: dataviewer
-Title: An Amazing Shiny App
+Title: Data Viewer
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "firstname",
-           family = "lastname",
-           role = c("aut", "cre"),
-           email = "your@email.com")
-Description: What the package does (one paragraph).
-License: What license is it under?
+Authors@R: person('Adam', 'Waring', email = 'adamwaring@hotmail.co.uk', role = c('cre', 'aut'))
+Description: Visualise Datasets in Shiny
+License: MIT + file LICENSE
 Imports: 
+    argonDash,
+    argonR,
+    attempt,
     config (>= 0.3.1),
+    data.table,
+    DT,
+    glue,
     golem (>= 0.3.1),
-    shiny (>= 1.7.0)
+    htmltools,
+    processx,
+    shiny (>= 1.7.0),
+    thinkr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 URL: https://github.com/adamwaring/dataviewer
 BugReports: https://github.com/adamwaring/dataviewer/issues
+Suggests: 
+    covr,
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Language: en-US

@@ -1,0 +1,19 @@
+1. ui-first, shinipsum, datasets page outline
+a) datasets table
+b) new dataset -> modal fileinput -> local or HTTP
+c) dataviewer for different datatypes (structured, time-series, image, text, video) - start structured
+
+2. use github actions
+
+3. use shinysnippets
+
+4. use modules
+
+
+module 1 = whole datasets tab
+
+submodule 1 = datasets viewer + view buttons + upload new button (where to cache these = argument, if to cache these = argument, cache versus link path)
+
+submodule 2 = view structured
+
+submodule 3 = view summarise structured
