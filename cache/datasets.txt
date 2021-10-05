@@ -1,0 +1,4 @@
+Type	Name	Size	Location	Cache
+Structured	Titanic	189.9 kb	dataviewer::titanic	FALSE
+Structured	mtcars	7 kb	datasets::mtcars	FALSE
+Structured	iris	7.1 kb	datasets::iris	FALSE
