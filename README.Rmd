@@ -21,17 +21,11 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/adamwaring/dataviewer/branch/master/graph/badge.svg)](https://codecov.io/gh/adamwaring/dataviewer?branch=master)
 <!-- badges: end -->
 
-The goal of dataviewer is to ...
+This app contains the components for a data input and viewer module for an app. 
 
 ## Installation
 
-You can install the released version of dataviewer from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("dataviewer")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -39,25 +33,15 @@ devtools::install_github("adamwaring/dataviewer")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The available datasets are listed in a table with some summary information. 
+These can be deleted by selecting the delete button. 
 
-```{r example}
-library(dataviewer)
-## basic example code
-```
+![Argon table showing available datasets](inst/app/www/argon_table_example.PNG)
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+New datasets can also be uploaded. Clicking the button launches a dataset input modal.
 
-```{r cars}
-summary(cars)
-```
+![Dataset input modal](inst/app/www/dataset_input_modal.PNG)
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/master/examples>.
+By clicking on the view button next to datasets they are rendered as DataTables.
 
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+![DT render](inst/app/www/dataset_render.PNG)
