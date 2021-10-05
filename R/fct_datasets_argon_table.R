@@ -1,10 +1,11 @@
 #' datasets_argon_table
 #'
-#' @description A fct function
+#' @param ns namespace
 #'
-#' @return The return value, if any, from executing the function.
+#' @description Creates an argon table to show datasets available in the app
 #'
-#' @noRd
+#' @return shiny.tag
+#' @export
 datasets_argon_table = function(ns){
 
   data_cache = readr::read_tsv("cache/datasets.txt", col_types = "cccc", lazy = F)
@@ -62,3 +63,4 @@ datasets_argon_table = function(ns){
   )
 
 }
+

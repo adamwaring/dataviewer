@@ -1,4 +1,5 @@
 Type	Name	Size	Location	Cache
-Structured	Titanic	189.9 kb	dataviewer::titanic	FALSE
-Structured	mtcars	7 kb	datasets::mtcars	FALSE
-Structured	iris	7.1 kb	datasets::iris	FALSE
+Tabular	mtcars	7 kb	datasets::mtcars	FALSE
+Tabular	iris	7.1 kb	datasets::iris	FALSE
+Tabular	titanic_test	28 Kb	./cache/cached_datasets/test.csv	TRUE
+Tabular	Arrhythmia	392.9 Kb	https://archive.ics.uci.edu/ml/machine-learning-databases/arrhythmia/arrhythmia.data	FALSE

@@ -22,10 +22,7 @@ usethis::use_package( "argonDash" )
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module( name = "datasets" ) #
 golem::add_module( name = "datasets_table" )
-golem::add_module( name = "structured_view" ) #
-golem::add_module( name = "structured_summarise" )
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*

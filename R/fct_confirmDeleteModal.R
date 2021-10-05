@@ -1,11 +1,13 @@
 #' confirmDeleteModal
 #'
-#' @description A fct function
+#' @param ns namespace
+#' @param i dataset to confirm delete for
 #'
-#' @return The return value, if any, from executing the function.
+#' @description Launches a modal to check whether the user wants to delete
 #'
-#' @noRd
-confirmDeleteModal = function(ns){
+#' @return shiny.tag
+#' @export
+confirmDeleteModal = function(ns, i){
 
   modalDialog(
 

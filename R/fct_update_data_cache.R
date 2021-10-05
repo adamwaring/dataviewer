@@ -1,16 +1,24 @@
 #' update_data_cache
 #'
-#' @description A fct function
+#' @param data_type Type of data e.g. Tabular, Time-Series, Image, Text
+#' @param data_file Data file object from fileInput()
+#' @param data_loc Local or URL
+#' @param data_url URL of the data to download
+#' @param data_name Name of the dataset
+#' @param cache Yes or No - whether to cache data, only valid for URL as local is automatically caches by fileInput()
+#' @param cache_dir Directpry to cache the data - default = "./cache/cached_datasets"
+#'
+#' @description Takes input from dataModal and adds new dataset to app and cache
 #'
 #' @return The return value, if any, from executing the function.
-#'
-#' @noRd
+#' @export
+
 update_data_cache = function(data_type, data_file, data_loc, data_url, data_name, cache, cache_dir){
 
   if(is.null(cache_dir)) cache_dir = "./cache/cached_datasets/"
 
-  # check dataset is as expected - i.e. structured local = table of data, URL is downloadable
-  if(data_type == "Structured"){
+  # check dataset is as expected - i.e. tabular local = table of data, URL is downloadable
+  if(data_type == "Tabular"){
     if(data_loc == "Local"){
 
       temppath = data_file$datapath
@@ -27,13 +35,18 @@ update_data_cache = function(data_type, data_file, data_loc, data_url, data_name
 
       file.rename(from = temppath,  to = path)
 
+      size = utils:::format.object_size(file.size(path), "auto")
 
     } else if(data_loc == "URL"){
 
       path = data_url
 
+      response = httr::HEAD(data_url)
+      content_length = httr::headers(response)[["Content-Length"]]
+      size = utils:::format.object_size(as.numeric(content_length), "auto")
+
     }
-    size = utils:::format.object_size(file.info(path)$size, "auto")
+
   }
 
   datasets_file = "./cache/datasets.txt"

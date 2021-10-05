@@ -6,22 +6,17 @@
 #' @noRd
 app_ui <- function(request) {
   shiny::tagList(
+
     # Leave this function for adding external resources
     golem_add_external_resources(),
-    # Your application UI logic
+
     argonDash::argonDashPage(
-      title = "Argon Dashboard Demo",
-      author = "David",
-      description = "Argon Dash Test",
-      sidebar = argonSidebar,
-      #navbar = argonNav,
-      header = argonHeader,
+
       body = argonDash::argonDashBody(
-        argonDash::argonTabItems(
-          mod_datasets_ui("datasets_ui_1")
-        )
-      ),
-      footer = argonFooter
+
+        mod_datasets_table_ui("datasets_table_ui_1")
+
+      )
     )
   )
 }

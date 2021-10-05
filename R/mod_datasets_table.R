@@ -1,27 +1,25 @@
 #' datasets_table UI Function
 #'
-#' @description A shiny Module.
+#' @description A UI module for uploading and viewing dataset
 #'
-#' @param id,input,output,session Internal parameters for {shiny}.
-#'
-#' @noRd
+#' @param id id for instantiated module
 #'
 #' @importFrom shiny NS tagList
 mod_datasets_table_ui <- function(id){
   ns <- NS(id)
   tagList(
 
-    argonCard_helper("Available Datasets", "table", "info",
+    dataviewer::argonCard_helper("Available Datasets", icon("table"), "info",
 
-                     uiOutput(ns("argonTable")),
+                                 uiOutput(ns("argonTable")),
 
-                     argonDash::argonDropNavDivider(), br(),
+                                 argonDash::argonDropNavDivider(), br(),
 
-                     actionButton(ns("new_dataset"), "Upload a new dataset", icon = icon("upload"))
+                                 actionButton(ns("new_dataset"), "Upload a new dataset", icon = icon("upload"))
     ),
 
-    argonCard_helper("View dataset", "table", "info",
-                     DT::DTOutput(ns("vis_data"))
+    dataviewer::argonCard_helper("View dataset", icon("table"), "info",
+                                 DT::DTOutput(ns("vis_data"))
     )
 
   )
@@ -29,7 +27,9 @@ mod_datasets_table_ui <- function(id){
 
 #' datasets_table Server Functions
 #'
-#' @noRd
+#' @description A Server module for uploading and viewing dataset
+#'
+#' @param id id for instantiated module
 mod_datasets_table_server <- function(id){
   moduleServer( id, function(input, output, session){
 
@@ -39,7 +39,7 @@ mod_datasets_table_server <- function(id){
 
     observeEvent(input$new_dataset, {
 
-      showModal(dataModal(ns=ns))
+      showModal(dataviewer::dataModal(ns=ns))
 
     })
 
@@ -49,13 +49,13 @@ mod_datasets_table_server <- function(id){
 
       # need to check inputs and check dataset !!!!!!!!!!!!!!!!!!!!
 
-      update_data_cache(input$dataset_type,
-                        input$dataset_file,
-                        input$dataset_location,
-                        input$dataset_url,
-                        input$dataset_name,
-                        input$cache,
-                        input$cache_dir)
+      dataviewer::update_data_cache(input$dataset_type,
+                                    input$dataset_file,
+                                    input$dataset_location,
+                                    input$dataset_url,
+                                    input$dataset_name,
+                                    input$cache,
+                                    input$cache_dir)
 
       # refresh argonTable
       vals$trigger = vals$trigger + 1
@@ -68,7 +68,7 @@ mod_datasets_table_server <- function(id){
 
       observeEvent(input[[paste0("delete", i)]], {
 
-        showModal(confirmDeleteModal(ns=ns))
+        showModal(dataviewer::confirmDeleteModal(ns=ns, i))
 
       })
 
@@ -76,7 +76,7 @@ mod_datasets_table_server <- function(id){
 
         removeModal()
 
-        delete_dataset(i)
+        dataviewer::delete_dataset(i)
 
         # refresh argonTable
         vals$trigger = vals$trigger + 1
@@ -84,7 +84,7 @@ mod_datasets_table_server <- function(id){
 
       observeEvent(input[[paste0("view", i)]], {
 
-        output$vis_data <- DT::renderDT(view_dataset(i))
+        output$vis_data <- DT::renderDT(dataviewer::read_dataset(i))
 
       })
 
@@ -95,7 +95,7 @@ mod_datasets_table_server <- function(id){
 
       output$argonTable <- renderUI({
 
-        datasets_argon_table(ns=ns)
+        dataviewer::datasets_argon_table(ns=ns)
 
       })
 

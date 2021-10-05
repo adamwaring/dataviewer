@@ -1,10 +1,11 @@
 #' dataModal
 #'
-#' @description A fct function
+#' @param ns namespace
 #'
-#' @return The return value, if any, from executing the function.
+#' @description Launches a modal to accept user data upload.
 #'
-#' @noRd
+#' @return shiny.tag
+#' @export
 dataModal = function(ns){
   modalDialog(
 
@@ -15,7 +16,7 @@ dataModal = function(ns){
     # do some checking of valid inputs here and do not show OK button until all valid i.e. upload complete and URL provided etc.
 
     textInput(ns("dataset_name"), "Name", placeholder = "Identifier for the dataset..."),
-    selectInput(ns("dataset_type"), "Type", c("Structured", "Time-Series", "Image"), "Structured"),
+    selectInput(ns("dataset_type"), "Type", c("Tabular", "Time-Series", "Image"), "Tabular"),
     selectInput(ns("dataset_location"), "Location", c("Local", "URL")),
 
     conditionalPanel(

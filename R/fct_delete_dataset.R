@@ -1,16 +1,25 @@
 #' delete_dataset
 #'
-#' @description A fct function
+#' @param i index of the dataset to delete
 #'
-#' @return The return value, if any, from executing the function.
+#' @description Deletes a dataset from dataset file and cache
 #'
-#' @noRd
+#' @return NULL
+#' @export
 delete_dataset = function(i){
 
   datasets = readr::read_tsv("cache/datasets.txt", lazy = F)
 
-  if(as.logical(datasets[i, "Cache"])) file.remove(datasets[i,][["Location"]])
+  if(i > nrow(datasets)){
 
-  readr::write_tsv(datasets[-i,], file = "./cache/datasets.txt")
+    warning("No dataset at index ", i)
+
+  } else {
+
+    if(as.logical(datasets[i, "Cache"])) file.remove(datasets[i,][["Location"]])
+
+    readr::write_tsv(datasets[-i,], file = "./cache/datasets.txt")
+
+  }
 
 }
